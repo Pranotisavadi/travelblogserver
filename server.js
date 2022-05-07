@@ -1,6 +1,7 @@
 const express = require("express");
 // const express = require("cors");
 const app = express();
+const authRoute = require("./app/routes/auth");
 
 
 // app.listen("5000", ()=> {
@@ -14,7 +15,7 @@ app.get("/", (req, res) => {
 
   app.use(express.urlencoded({ extended: true }));
   const db = require("./app/models");
-  
+    
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
@@ -27,6 +28,8 @@ db.mongoose
     console.log("Cannot connect to the database!", err);
     process.exit();
   });
+
+  app.use("/api/auth", authRoute);
 
   const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

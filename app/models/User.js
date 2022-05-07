@@ -1,31 +1,66 @@
-module.exports = mongoose => {
-    const Travelblog = mongoose.model(
-      "User",
-      mongoose.Schema(
-        {
+// module.exports = mongoose => {
+//     const User = mongoose.model(
+//       "User",
+//       mongoose.Schema(
+//         {
 
-          username:{
-            type:String,
-            required:true,
-            unique:true,
-          },
-          email:{
-            type:String,
-            required:true,
-            unique:true,
-          },
-          password:{
-            type:String,
-            required:true,
-          },
-          profilePic:{
-            type:String,
-            default:"",
-          }
+//           username:{
+//             type:String,
+//             required:true,
+//             unique:true,
+//           },
+//           email:{
+//             type:String,
+//             required:true,
+//             unique:true,
+//           },
+//           password:{
+//             type:String,
+//             required:true,
+//           },
+//           profilePic:{
+//             type:String,
+//             default:"",
+//           }
           
-        },
-        { timestamps: true }
-      )
-    );
-    return Travelblog;
-  };
+//         },
+//         { timestamps: true }
+//       )
+//     );
+//     return User;
+//   };
+
+
+
+
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const userSchema = new Schema( {
+
+  username:{
+    type:String,
+    required:true,
+    unique:true,
+  },
+  email:{
+    type:String,
+    required:true,
+    unique:true,
+  },
+  password:{
+    type:String,
+    required:true,
+  },
+  profilePic:{
+    type:String,
+    default:"",
+  }
+  
+},
+{timestamps:true}
+);
+
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
