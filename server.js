@@ -2,6 +2,7 @@ const express = require("express");
 // const express = require("cors");
 const app = express();
 const authRoute = require("./app/routes/auth");
+const usersRoute = require("./app/routes/users");
 
 
 // app.listen("5000", ()=> {
@@ -30,6 +31,7 @@ db.mongoose
   });
 
   app.use("/api/auth", authRoute);
+  app.use("/api/users", usersRoute);
 
   const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
