@@ -1,0 +1,16 @@
+{
+  "name": "eserver",
+  "version": "1.0.0",
+  "description": "Node.js RESTful CRUD API with NOde.js , Express and MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.2"
+  }
+}
