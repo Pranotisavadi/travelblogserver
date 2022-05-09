@@ -3,6 +3,9 @@ const express = require("express");
 const app = express();
 const authRoute = require("./app/routes/auth");
 const usersRoute = require("./app/routes/users");
+const postsRoute = require("./app/routes/posts");
+const typesRoute = require("./app/routes/types");
+const multer = require ("multer")
 
 
 // app.listen("5000", ()=> {
@@ -30,8 +33,25 @@ db.mongoose
     process.exit();
   });
 
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./app/images")
+    },
+    filename: function (req, file, cb) {     
+      cb(null, req.body.name)
+    }
+  })
+  
+  const upload = multer({ storage: storage });
+  app.post("/api/upload", upload.single("file"), (req, res) => {
+    res.status(200).json("File has been uploaded")
+  });
+
+ 
   app.use("/api/auth", authRoute);
   app.use("/api/users", usersRoute);
+  app.use("/api/posts", postsRoute);
+  app.use("/api/types", typesRoute);
 
   const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
